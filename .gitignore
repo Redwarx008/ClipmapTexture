@@ -2,3 +2,5 @@
 **/*.obj
 **/*.pdb
 .cache
+.godot
+**/*.pyc

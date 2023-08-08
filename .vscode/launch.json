@@ -14,7 +14,7 @@
             "preLaunchTask": "build"
         },
         {
-            "name": "Launch vsdbg",
+            "name": "LaunchDebug",
             "type": "cppvsdbg",
             "request": "launch",
             "program": "${workspaceFolder}/godot/bin/godot.windows.editor.dev.x86_64.exe",
@@ -26,7 +26,52 @@
             "environment": [],
             "console": "internalConsole",
             "visualizerFile": "${workspaceFolder}/godot/platform/windows/godot.natvis",
-            "preLaunchTask": "build",
-          }
+            "preLaunchTask": "build-standard-debug",
+          },
+          {
+            "name": "LaunchRelease",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/godot/bin/godot.windows.editor.x86_64.exe",
+            // Change the arguments below for the project you want to test with.
+            // To run the project instead of editing it, remove the "--editor" argument.
+            "args": [ "-e", "--path", "E:\\MapEditor" ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "console": "internalConsole",
+            "visualizerFile": "${workspaceFolder}/godot/platform/windows/godot.natvis",
+            "preLaunchTask": "build-standard-release",
+          },
+          {
+            "name": "LaunchMonoRelease",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/godot/bin/godot.windows.editor.x86_64.mono.exe",
+            // Change the arguments below for the project you want to test with.
+            // To run the project instead of editing it, remove the "--editor" argument.
+            "args": [ "-e", "--path", "E:\\MapEditor" ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "console": "internalConsole",
+            "visualizerFile": "${workspaceFolder}/godot/platform/windows/godot.natvis",
+            "preLaunchTask": "build-dotnet-release",
+          },
+          {
+            "name": "LaunchMonoDebug",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/godot/bin/godot.windows.editor.dev.x86_64.mono.exe",
+            // Change the arguments below for the project you want to test with.
+            // To run the project instead of editing it, remove the "--editor" argument.
+            "args": [ "-e", "--path", "E:\\MapEditor" ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "console": "internalConsole",
+            "visualizerFile": "${workspaceFolder}/godot/platform/windows/godot.natvis",
+            "preLaunchTask": "build-dotnet-debug",
+          },
     ]
 }
