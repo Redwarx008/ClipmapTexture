@@ -1,0 +1,4 @@
+[submodule "godot"]
+	path = godot
+	url = https://github.com/Redwarx008/godot.git
+	branch = add-texture-partial-update
