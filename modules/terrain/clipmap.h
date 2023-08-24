@@ -14,8 +14,8 @@ public:
     Clipmap(const String& mapPath, int nLevel, const Vector2i& center);
     void Update(const Vector2i& newCenter);
 private:
-    Vector2i _size;
-    Vector2i _center;
+    Vector2i _clipSize;
+    Vector2i _clipCenter;
 
     std::vector<Vector<uint8_t>> _datas;
     std::vector<RID> _textureRIDs;
