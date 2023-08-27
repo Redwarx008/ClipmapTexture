@@ -1,0 +1,5 @@
+BasedOnStyle: Microsoft 
+
+# Objects like {a: 0}, not { a : 0 }.
+SpacesInContainerLiterals: false
+JavaScriptQuotes: Single
