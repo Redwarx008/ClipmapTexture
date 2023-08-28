@@ -11,7 +11,7 @@
 
 #include "Utility/file.hpp"
 #include "constants/terrain_constants.hpp"
-#include "texture_cache.hpp"
+#include "clip_mipmap.hpp"
 
 namespace terrain
 {
@@ -40,7 +40,7 @@ class Clipmap
     Vector2i _clipCenter{-1, -1};
 
     std::vector<size_t> _mipmapOffset;
-    std::vector<TextureCache> _clipStack;
+    std::vector<ClipMipmap> _clipStack;
 
     std::vector<uint8_t> ReadRegion(const Rect2i& region, int mipLevel);
 };

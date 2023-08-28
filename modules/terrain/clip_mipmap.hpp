@@ -14,11 +14,11 @@ namespace terrain
 /*
  Wrapper for binary texture data
 */
-class TextureCache
+class ClipMipmap
 {
   public:
-    TextureCache() = delete;
-    TextureCache(int size, int nChannel, int bitDepth);
+    ClipMipmap() = delete;
+    ClipMipmap(int size, int nChannel, int bitDepth);
     inline int GetSize() const;
     Vector<uint8_t> GetRegion(const Rect2i &region);
     void UpdateRegion(const Rect2i &dstRegion, const std::vector<uint8_t> &data);
@@ -26,6 +26,7 @@ class TextureCache
   private:
     int _size;
     int _pixelSize;
+    Vector2i _center;
     std::shared_mutex _mutex;
     std::vector<uint8_t> _data;
 };

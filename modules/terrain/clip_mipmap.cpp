@@ -1,4 +1,4 @@
-#include "texture_cache.hpp"
+#include "clip_mipmap.hpp"
 
 #include <stdint.h>
 
@@ -11,19 +11,19 @@
 namespace terrain
 {
 
-TextureCache::TextureCache(int size, int nChannel, int bitDepth)
+ClipMipmap::ClipMipmap(int size, int nChannel, int bitDepth)
 {
     _size = size;
     _pixelSize = nChannel * bitDepth / 8;
     _data.resize(size * size * _pixelSize);
 }
 
-int TextureCache::GetSize() const
+int ClipMipmap::GetSize() const
 {
     return _size;
 }
 
-Vector<uint8_t> TextureCache::GetRegion(const Rect2i &region)
+Vector<uint8_t> ClipMipmap::GetRegion(const Rect2i &region)
 {
     Vector<uint8_t> data;
     if (region.position.x < 0 || region.position.x + region.size.x > _size || region.position.y < 0 ||
@@ -59,7 +59,7 @@ Vector<uint8_t> TextureCache::GetRegion(const Rect2i &region)
     return data;
 }
 
-void TextureCache::UpdateRegion(const Rect2i &dstRegion, const std::vector<uint8_t> &data)
+void ClipMipmap::UpdateRegion(const Rect2i &dstRegion, const std::vector<uint8_t> &data)
 {
     if (dstRegion.position.x < 0 || dstRegion.position.x + dstRegion.size.x > _size || dstRegion.position.y < 0 ||
         dstRegion.position.y + dstRegion.size.y > _size)
