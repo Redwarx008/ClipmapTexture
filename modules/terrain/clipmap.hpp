@@ -9,9 +9,11 @@
 #include <stdint.h>
 #include <vector>
 
-#include "Utility/file.hpp"
-#include "constants/terrain_constants.hpp"
-#include "clip_mipmap.hpp"
+#include "constants/TerrainConstants.hpp"
+#include "ClipLevel.hpp"
+#include "TiledBitmap.hpp"
+#include "utility/File.hpp"
+
 
 namespace terrain
 {
@@ -27,8 +29,8 @@ class Clipmap
     void Update(const Vector2i &newCenter);
 
   private:
-    Clipmap(File &&file, const Vector2i &center);
-    File _file;
+    Clipmap(TiledBitmap &&tiledBitmap, const Vector2i &center);
+    TiledBitmap _tiledBitmap;
 
     int _width;
     int _height;
@@ -40,9 +42,7 @@ class Clipmap
     Vector2i _clipCenter{-1, -1};
 
     std::vector<size_t> _mipmapOffset;
-    std::vector<ClipMipmap> _clipStack;
-
-    std::vector<uint8_t> ReadRegion(const Rect2i& region, int mipLevel);
+    std::vector<ClipLevel> _clipStack;
 };
 
 } // namespace terrain
