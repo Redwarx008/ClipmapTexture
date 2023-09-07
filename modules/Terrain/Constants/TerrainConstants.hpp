@@ -1,9 +1,10 @@
 #ifndef TERRAIN_CONSTANTS_H
 #define TERRAIN_CONSTANTS_H
 
-namespace terrain {
-    static const int CLIP_WINDOW_SIZE = 1024; //256 * 4
-    static const int CLIP_CACHE_SIZE = 1536; // 256 * 6
+#include <intsafe.h>
+namespace terrain
+{
+static const size_t NODE_SELECTION_MAX = 1024;
 }
 
 #endif

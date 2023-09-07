@@ -7,26 +7,32 @@
 #include <scene/3d/mesh_instance_3d.h>
 #include <scene/3d/node_3d.h>
 
-namespace terrain {
+#include "TerrainQuadTree.hpp"
+#include "terrain/Constants/TerrainConstants.hpp"
+
+namespace terrain
+{
 
 class Terrain : public Node3D
 {
-  GDCLASS(Terrain, Node3D)
-public:
-  void set_mesh(Ref<MeshInstance3D> mesh);
-  Ref<MeshInstance3D> get_mesh();
+    GDCLASS(Terrain, Node3D)
+  public:
+    void set_mesh(Ref<MeshInstance3D> mesh);
+    Ref<MeshInstance3D> get_mesh();
 
-  Terrain();
-  // ~Terrain();
-protected:
-  static void _bind_methods();
+    Terrain();
+    // ~Terrain();
+  protected:
+    void _notification(int p_what);
+    static void _bind_methods();
 
-private:
-  Ref<MeshInstance3D> _mesh;
-  Ref<Material> _material;
+  private:
+    void process();
 
-  const String dataPath{ "heightmap" };
+    TerrainQuadTree::NodeSelections<NODE_SELECTION_MAX> _lastSelectedNodes;
+
+    TerrainQuadTree _quadTree;
 };
 
-}
+} // namespace terrain
 #endif
