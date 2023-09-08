@@ -5,3 +5,4 @@
 .godot
 **/*.pyc
 modules/voxel/
+compile_commands.json
