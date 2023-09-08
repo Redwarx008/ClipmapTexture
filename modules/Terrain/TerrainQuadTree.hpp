@@ -1,4 +1,6 @@
+#include "core/math/vector3.h"
 #include "scene/3d/camera_3d.h"
+#include "scene/resources/material.h"
 #include "terrain/Constants/TerrainConstants.hpp"
 #include <array>
 #include <stdint.h>
@@ -11,6 +13,8 @@ class TerrainQuadTree
     struct Node
     {
         int level;
+        void SetVisible(bool visible);
+        void SetMaterial(Ref<Material> material);
     };
     template <size_t n> struct NodeSelections
     {
@@ -18,6 +22,6 @@ class TerrainQuadTree
         int count;
     };
     TerrainQuadTree();
-    void Select(const Camera3D &camera, NodeSelections<NODE_SELECTION_MAX> &selectedNodes);
+    void Select(Vector3 cameraPos, NodeSelections<NODE_SELECTION_MAX> &selectedNodes);
 };
 } // namespace terrain
