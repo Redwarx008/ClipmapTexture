@@ -30,7 +30,7 @@ class Terrain : public Node3D
 
     TerrainQuadTree::NodeSelections<NODE_SELECTION_MAX> _lastSelectedNodes;
 
-    TerrainQuadTree _quadTree;
+    TerrainQuadTree* _quadTree;
 
     Camera3D* _camera;
 };

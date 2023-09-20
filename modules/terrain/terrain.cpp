@@ -22,17 +22,20 @@ void Terrain::ready()
 
 void Terrain::process()
 {
+    if (!_quadTree)
+    {
+        return;
+    }
     for (int i = 0; i < _lastSelectedNodes.count; ++i)
     {
-        //set visiable
+        // set visiable
     }
 
     TerrainQuadTree::NodeSelections<NODE_SELECTION_MAX> selection;
-    _quadTree.Select(_camera->get_global_position(), selection);
+    _quadTree->Select(_camera->get_global_position(), selection);
 
     for (int i = 0; i < selection.count; ++i)
     {
-
     }
     _lastSelectedNodes = selection;
 }

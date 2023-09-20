@@ -7,45 +7,34 @@
 
 namespace terrain
 {
-
-enum TiledBitmapFormat : uint8_t
-{
-    R8UInt,
-    RG8UInt,
-    RGBA8UInt,
-    R16UInt,
-    R32SFloat,
-    Unkown
-};
-
-class TiledBitmap
+class PagedTexture
 {
   public:
-    struct Tile
+    struct Page
     {
         int width = 0;
         int height = 0;
         std::vector<uint8_t> data;
     };
 
-    TiledBitmap();
-    TiledBitmap(TiledBitmap &&other);
+    PagedTexture();
+    PagedTexture(PagedTexture &&other);
     bool Open(const char *fileName);
-    Tile LoadTile(int mipmapLevel, int tileX, int tileY);
+    Page LoadPage(int mipmapLevel, int pageX, int pageY);
     int GetWidth() const;
     int GetHeight() const;
     int GetMipmapCout() const;
-    TiledBitmapFormat GetFormat() const;
 
   private:
-    int64_t GetTileStartPos(int mipmapLevel, int tileX, int tileY) const;
+    int64_t GetPageStartPos(int mipmapLevel, int pageX, int pageY) const;
     const int _headerSize = 9;
     int _width;
     int _height;
     int _tileWidth;
     int _mipmapCount;
-
-    TiledBitmapFormat _format;
+    int _nChannel;
+    int _bitDepth;
+    int _borderWidth;
     File _file;
 };
 } // namespace terrain
