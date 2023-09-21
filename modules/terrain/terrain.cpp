@@ -18,6 +18,8 @@ void Terrain::ready()
     const Viewport *vp = get_viewport();
     _camera = vp->get_camera_3d();
     ERR_FAIL_COND_MSG(_camera != nullptr, "no active camera!");
+
+    
 }
 
 void Terrain::process()

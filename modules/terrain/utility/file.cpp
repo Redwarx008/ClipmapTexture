@@ -9,13 +9,6 @@
 
 namespace terrain
 {
-
-#if defined(_WIN32)
-extern "C" __declspec(dllimport) int __stdcall MultiByteToWideChar(unsigned int cp, unsigned long flags,
-                                                                   const char *str, int cbmb, wchar_t *widestr,
-                                                                   int cchwide);
-#endif
-
 File::File()
 {
 }
@@ -57,34 +50,13 @@ bool File::Open(const char *fileName, FileMode mode)
     }
 
 #if defined(_WIN32)
-    wchar_t wMode[64];
-    wchar_t wFilename[1024];
-    if (0 == MultiByteToWideChar(65001 /* UTF8 */, 0, fileName, -1, wFilename, sizeof(wFilename) / sizeof(*wFilename)))
-        return 0;
-
-    if (0 == MultiByteToWideChar(65001 /* UTF8 */, 0, mod, -1, wMode, sizeof(wMode) / sizeof(*wMode)))
-        return 0;
-#if defined(_MSC_VER) && _MSC_VER >= 1400
-    if (0 != _wfopen_s(&_f, wFilename, wMode))
-    {
+    if (0 != fopen_s(&_f, fileName, mod))
         return false;
-    }
 #else
-    _f = _wfopen(wFilename, wMode);
+    _f = fopen(fileName, mod);
     if (_f == nullptr)
-    {
         return false;
-    }
 #endif
-
-#else
-    _f = fopen(filename, mod);
-    if (_f == nullptr)
-    {
-        return false;
-    }
-#endif
-
     return true;
 }
 
