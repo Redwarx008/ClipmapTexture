@@ -1,16 +1,26 @@
+#include "core/error/error_list.h"
 #include "core/error/error_macros.h"
+#include "core/io/config_file.h"
 #include "core/object/class_db.h"
 #include "core/object/object.h"
+#include "core/variant/variant.h"
 #include "scene/main/viewport.h"
 #include "scene/resources/material.h"
 
 #include "terrain.hpp"
+#include "terrain/terrain.hpp"
 
 namespace terrain
 {
 
 Terrain::Terrain()
 {
+}
+
+
+void Terrain::set_map_config(String &p_file_path)
+{
+    _mapConfig.Load(p_file_path);
 }
 
 void Terrain::ready()
@@ -57,6 +67,9 @@ void Terrain::_notification(int p_what)
 }
 void Terrain::_bind_methods()
 {
+    ClassDB::bind_method(D_METHOD("set_map_config", "file_path"), &Terrain::set_map_config);
+
+    ADD_PROPERTY(PropertyInfo(Variant::STRING, "map_config", PROPERTY_HINT_FILE, "*.config, *.ini"), "set_map_config", nullptr);
 }
 
 } // namespace terrain
